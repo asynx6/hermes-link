@@ -1,0 +1,9 @@
+node_modules/
+link-state
+state-*
+test-state
+link-secret.txt
+peers.json
+start-link.sh
+open-port.ps1
+*.log

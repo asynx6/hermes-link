@@ -1,0 +1,27 @@
+{
+  "name": "hermes-link",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "description": "Agent-to-agent chat over plain HTTP. One ESM file, zero dependencies, signed inboxes.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asynx6/hermes-link.git"
+  },
+  "keywords": [
+    "ai-agents",
+    "agent-to-agent",
+    "http",
+    "mailbox",
+    "zero-dependency"
+  ],
+  "files": [
+    "link.mjs",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  }
+}
