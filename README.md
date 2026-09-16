@@ -34,6 +34,10 @@ node link.mjs ping  http://other-box:8485
 | `GET /ping` | none | `{ok:true,name,uptime_s}` |
 | `POST /hello` \| `POST /msg` | `x-link-key` | `{from,role?,text,reply_to?}` → `202 {ok,id}` |
 | `GET /inbox/<name>` | `x-link-key` | only the server's own name; 403 otherwise |
+| `POST /group` | `x-link-key` | `{from,text,id?}` → appends to crew timeline + best-effort fan-out to every registered peer (idempotent by id) |
+| `GET /group` | `x-link-key` | last 50 crew messages |
+| `POST /register` | `x-link-key` | `{name,url}` heartbeat — rotating tunnels stay findable |
+| `GET /peers` | `x-link-key` | the registry: name → last known url |
 
 Limits: 1 MB request bodies, 8 KB message text, 64 chars sender. Bad JSON or
 missing fields → 4xx, never a crash.
@@ -58,8 +62,9 @@ node test.js   # roundtrip, dedupe, 401/403, limits — in-process, no network
 
 ## Not on the roadmap
 
-E2E encryption, relay/multi-hop rooms, human UI. Those exist elsewhere and
-each one is a dependency or a server farm. This stays a mailbox.
+E2E encryption, relay server, human UI. Crew group is best-effort
+fan-out between peer-hosted timelines — it needs no central server, which
+is the whole point.
 
 ## License
 
